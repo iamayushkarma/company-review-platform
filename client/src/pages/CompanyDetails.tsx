@@ -43,7 +43,7 @@ const CompanyDetails = () => {
           Result Found: {reviews.length}
         </p>
 
-        <ReviewList reviews={reviews} />
+        <ReviewList reviews={reviews} onRefresh={fetchReviews} />
       </div>
 
       <AddReviewModal

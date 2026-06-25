@@ -44,4 +44,20 @@ const updateCompanyRating = async (companyId: string) => {
   });
 };
 
-export { createReview, getCompanyReviews, updateCompanyRating };
+const likeReview = async (reviewId: string) => {
+  const review = await Review.findByIdAndUpdate(
+    reviewId,
+    {
+      $inc: { likes: 1 },
+    },
+    { new: true },
+  );
+
+  if (!review) {
+    throw new ApiError(404, "Review not found");
+  }
+
+  return review;
+};
+
+export { createReview, getCompanyReviews, updateCompanyRating, likeReview };

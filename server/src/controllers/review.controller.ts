@@ -22,4 +22,9 @@ const getCompanyReviews = asyncHandler(async (req: Request, res: Response) => {
     .status(200)
     .json(new ApiResponse(200, reviews, "Reviews fetched successfully"));
 });
-export { createReview, getCompanyReviews };
+const likeReview = asyncHandler(async (req, res) => {
+  const review = await reviewService.likeReview(req.params.id as string);
+
+  return res.json(new ApiResponse(200, review, "Review liked"));
+});
+export { createReview, getCompanyReviews, likeReview };

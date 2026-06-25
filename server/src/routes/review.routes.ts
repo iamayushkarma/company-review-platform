@@ -7,4 +7,6 @@ router.post("/", reviewController.createReview);
 
 router.get("/company/:companyId", reviewController.getCompanyReviews);
 
+router.patch("/:id/like", reviewController.likeReview);
+
 export default router;

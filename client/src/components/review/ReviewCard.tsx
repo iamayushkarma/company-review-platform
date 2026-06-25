@@ -1,11 +1,15 @@
+import { ThumbsUp } from "lucide-react";
 import type { Review } from "../../types/review.types";
+import { Button } from "../common/Button";
 import { RatingStars } from "../common/RatingStars";
+import { likeReview } from "../../api/review.api";
 
 interface Props {
   review: Review;
+  onRefresh: () => void;
 }
 
-const ReviewCard = ({ review }: Props) => {
+const ReviewCard = ({ review, onRefresh }: Props) => {
   const formattedDate = new Date(review.createdAt).toLocaleString("en-GB", {
     day: "2-digit",
     month: "2-digit",
@@ -13,6 +17,11 @@ const ReviewCard = ({ review }: Props) => {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  const handleLike = async () => {
+    await likeReview(review._id);
+    onRefresh();
+  };
   return (
     <article className="mx-5 py-6">
       <div className="flex items-start gap-5">
@@ -46,6 +55,16 @@ const ReviewCard = ({ review }: Props) => {
           <p className="mt-5 text-[1rem] leading-8 text-text-secondary">
             {review.review}
           </p>
+
+          <div className="mt-6 flex items-center justify-between">
+            <button
+              onClick={handleLike}
+              className="h-auto gap-2 cursor-pointer flex p-0 text-text-secondary hover:bg-transparent hover:text-text-primary"
+            >
+              <ThumbsUp size={18} />
+              <span>{review.likes} Likes</span>
+            </button>
+          </div>
         </div>
       </div>
     </article>

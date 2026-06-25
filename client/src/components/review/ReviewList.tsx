@@ -3,9 +3,10 @@ import ReviewCard from "./ReviewCard";
 
 interface Props {
   reviews: Review[];
+  onRefresh: () => void;
 }
 
-const ReviewList = ({ reviews }: Props) => {
+const ReviewList = ({ reviews, onRefresh }: Props) => {
   if (!reviews.length) {
     return (
       <div className="py-16 text-center text-text-secondary">
@@ -17,7 +18,7 @@ const ReviewList = ({ reviews }: Props) => {
   return (
     <div className="space-y-5">
       {reviews.map((review) => (
-        <ReviewCard key={review._id} review={review} />
+        <ReviewCard key={review._id} review={review} onRefresh={onRefresh} />
       ))}
     </div>
   );
