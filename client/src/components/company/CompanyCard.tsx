@@ -1,61 +1,62 @@
-import { CalendarDays, MapPin, Star } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+
 import type { Company } from "../../types/company.types";
+import { RatingStars } from "../common/RatingStars";
 
 interface CompanyCardProps {
   company: Company;
 }
 
 const CompanyCard = ({ company }: CompanyCardProps) => {
+  const formattedDate = new Date(company.foundedOn).toLocaleDateString("en-GB");
+
   return (
-    <article className="rounded-xl border border-border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+    <article className="rounded-2xl bg-white px-8 py-6 shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-200 hover:shadow-[0_10px_35px_rgba(0,0,0,0.08)]">
       <div className="flex items-start justify-between">
-        <div className="flex items-center gap-4">
+        {/* Left */}
+        <div className="flex items-start gap-5">
           <img
             src={company.logo}
             alt={company.name}
-            className="h-16 w-16 rounded-lg border border-border object-contain p-2"
+            className="h-24 w-24 rounded-lg object-cover"
           />
 
           <div>
-            <h2 className="text-xl font-semibold text-text-primary">
+            <h2 className="text-[2rem] font-semibold leading-none text-[#1F1F1F]">
               {company.name}
             </h2>
 
-            <div className="mt-2 flex items-center gap-2 text-sm text-text-secondary">
-              <MapPin size={16} />
-              {company.location}
+            <div className="mt-3 flex items-center gap-2 text-[15px] text-[#7C7C7C]">
+              <MapPin size={15} strokeWidth={2} />
+              <span>{company.location}</span>
             </div>
 
-            <div className="mt-2 flex items-center gap-1">
-              <Star size={16} className="fill-yellow-400 text-yellow-400" />
+            <div className="mt-5 flex items-center gap-4">
+              <span className="text-3xl font-semibold text-[#1F1F1F]">
+                {company.rating.toFixed(1)}
+              </span>
 
-              <span className="font-medium">{company.rating.toFixed(1)}</span>
+              <RatingStars rating={company.rating} />
 
-              <span className="text-text-secondary">
-                ({company.reviewCount} Reviews)
+              <span className="text-2xl font-medium text-[#1F1F1F]">
+                {company.reviewCount} Reviews
               </span>
             </div>
           </div>
         </div>
-      </div>
 
-      <p className="mt-5 line-clamp-3 text-sm leading-6 text-text-secondary">
-        {company.description}
-      </p>
+        {/* Right */}
+        <div className="flex min-h-[96px] flex-col items-end justify-between">
+          <p className="text-sm text-[#8A8A8A]">Founded on {formattedDate}</p>
 
-      <div className="mt-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm text-text-secondary">
-          <CalendarDays size={16} />
-          Founded {new Date(company.foundedOn).toLocaleDateString()}
+          <Link
+            to={`/company/${company._id}`}
+            className="rounded-md bg-[#2F2F2F] px-8 py-3 text-base font-medium text-white transition hover:bg-black"
+          >
+            Detail Review
+          </Link>
         </div>
-
-        <Link
-          to={`/company/${company._id}`}
-          className="rounded-lg bg-neutral-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-black"
-        >
-          Detail Review
-        </Link>
       </div>
     </article>
   );

@@ -25,7 +25,7 @@ const CompanyDetails = () => {
   }
 
   return (
-    <>
+    <div>
       <CompanyHeader
         company={company}
         reviewCount={reviews.length}
@@ -49,7 +49,7 @@ const CompanyDetails = () => {
           fetchCompany();
         }}
       />
-    </>
+    </div>
   );
 };
 
