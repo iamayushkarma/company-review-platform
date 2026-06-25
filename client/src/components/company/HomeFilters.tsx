@@ -52,8 +52,8 @@ const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
           Sort
         </label>
 
-        <div className="relative">
-          <select className="h-12 w-40 appearance-none rounded-lg border border-gray-300 bg-white px-4 pr-10 outline-none">
+        <div className="relative ">
+          <select className="h-10 w-40 appearance-none cursor-pointer rounded-lg border border-gray-300 bg-white px-4 pr-10 outline-none text-[.9rem] font-medium">
             <option value="createdAt">Newest</option>
 
             <option value="name">Name</option>

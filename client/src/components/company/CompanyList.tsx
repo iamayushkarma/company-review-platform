@@ -16,9 +16,14 @@ const CompanyList = ({ companies }: CompanyListProps) => {
 
   return (
     <div className="space-y-6 mt-10">
-      {companies.map((company) => (
-        <CompanyCard key={company._id} company={company} />
-      ))}
+      <span className="text-text-secondary font-medium text-[0.85rem]">
+        Found {companies.length}
+      </span>
+      <div className="mt-2 flex flex-col gap-8">
+        {companies.map((company) => (
+          <CompanyCard key={company._id} company={company} />
+        ))}
+      </div>
     </div>
   );
 };
