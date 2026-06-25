@@ -10,8 +10,8 @@ interface HomeFiltersProps {
 
 const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
   return (
-    <section className="mt-2 space-y-10 border-b border-b-border flex flex-wrap items-end justify-between gap-6">
-      <div className="flex flex-wrap items-end gap-4 mx-10">
+    <section className="mt-2 space-y-10 border-b border-b-border flex flex-wrap items-start justify-between gap-6">
+      <div className="flex justify-center items-end gap-4 mx-10">
         {/* City */}
 
         <div className="w-80">
@@ -35,28 +35,19 @@ const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
         </div>
 
         {/* Find */}
-        <Button>
+        <Button className="gap-2">
           <Search size={18} />
 
           <span>Find Company</span>
         </Button>
-        {/* <button className="flex h-12 items-center gap-2 rounded-lg bg-violet-600 px-6 text-white transition hover:bg-violet-700"></button> */}
-
-        {/* Add Company */}
-
-        <button
-          onClick={onAddCompany}
-          className="flex h-12 items-center gap-2 rounded-lg bg-violet-600 px-6 text-white transition hover:bg-violet-700"
-        >
+        <Button onClick={onAddCompany} className="gap-2">
           <Plus size={18} />
 
           <span>Add Company</span>
-        </button>
+        </Button>
       </div>
 
-      {/* Sort */}
-
-      <div>
+      <div className="mx-10">
         <label className="mb-2 block text-sm font-medium text-gray-600">
           Sort
         </label>
