@@ -1,3 +1,4 @@
+import { env } from "./config/env.js";
 import express from "express";
 import cors from "cors";
 import errorHandler from "./middleware/error.middleware.js";
@@ -8,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: env.CLIENT_URL,
     credentials: true,
   }),
 );
