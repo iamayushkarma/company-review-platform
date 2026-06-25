@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import errorHandler from "./middleware/error.middleware";
 
 const app = express();
 
@@ -14,4 +15,5 @@ app.get("/", (_, res) => {
   });
 });
 
+app.use(errorHandler);
 export default app;
