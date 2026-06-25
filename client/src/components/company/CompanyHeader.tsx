@@ -47,7 +47,7 @@ const CompanyHeader = ({ company, onAddReview }: CompanyHeaderProps) => {
 
         {/* Right */}
         <div className="flex min-h-[96px] flex-col items-end justify-between">
-          <p className="text-sm text-[#8B8B8B]">
+          <p className="text-sm text-text-secondary">
             Founded on{" "}
             {new Date(company.foundedOn).toLocaleDateString("en-GB")}{" "}
           </p>

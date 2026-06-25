@@ -122,7 +122,7 @@ const AddCompanyModal = ({
           />
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-500">
+            <label className="mb-2 block text-sm font-medium text-text-secondary">
               Description
             </label>
 

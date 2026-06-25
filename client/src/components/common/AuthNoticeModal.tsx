@@ -12,14 +12,11 @@ const AuthNoticeModal = ({ open, onClose }: Props) => {
   return (
     <Modal isOpen={open} onClose={onClose} className="max-w-lg">
       <div className="relative overflow-hidden rounded-2xl bg-white px-8 py-8">
-        {/* Decoration */}
-
         <div className="absolute -left-8 -top-8 h-28 w-28 rounded-full bg-gradient-to-br from-fuchsia-500 to-indigo-700" />
 
         <div className="absolute left-14 -top-8 h-24 w-24 rounded-full bg-violet-200" />
 
-        {/* Close */}
-
+        {/* Close model */}
         <button
           onClick={onClose}
           className="absolute right-6 top-6 cursor-pointer"

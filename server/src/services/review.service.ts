@@ -2,7 +2,7 @@ import { Review } from "../models/review.model";
 import { Company } from "../models/company.model";
 import ApiError from "../utils/ApiError";
 
-export const createReview = async (data: any) => {
+const createReview = async (data: any) => {
   const company = await Company.findById(data.company);
 
   if (!company) {
@@ -16,7 +16,7 @@ export const createReview = async (data: any) => {
   return review;
 };
 
-export const getCompanyReviews = async (companyId: string) => {
+const getCompanyReviews = async (companyId: string) => {
   const company = await Company.findById(companyId);
 
   if (!company) {
@@ -28,7 +28,7 @@ export const getCompanyReviews = async (companyId: string) => {
   });
 };
 
-export const updateCompanyRating = async (companyId: string) => {
+const updateCompanyRating = async (companyId: string) => {
   const reviews = await Review.find({ company: companyId });
 
   const reviewCount = reviews.length;
@@ -43,3 +43,5 @@ export const updateCompanyRating = async (companyId: string) => {
     reviewCount,
   });
 };
+
+export { createReview, getCompanyReviews, updateCompanyRating };

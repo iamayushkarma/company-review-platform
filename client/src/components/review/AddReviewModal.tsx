@@ -91,7 +91,7 @@ const AddReviewModal = ({ open, companyId, onClose, onSuccess }: Props) => {
           />
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-500">
+            <label className="mb-2 block text-sm font-medium text-text-secondary">
               Enter your Review
             </label>
 
