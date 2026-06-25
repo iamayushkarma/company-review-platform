@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import { X } from "lucide-react";
 
 import { createCompany } from "../../api/company.api";
+import Modal from "../common/Modal";
+import { Input } from "../common/Input";
+import { Button } from "../common/Button";
 
 interface AddCompanyModalProps {
   open: boolean;
@@ -28,7 +31,10 @@ const AddCompanyModal = ({
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<CompanyFormData>();
+  } = useForm<CompanyFormData>({
+    mode: "onSubmit",
+    reValidateMode: "onChange",
+  });
 
   if (!open) return null;
 
@@ -45,130 +51,111 @@ const AddCompanyModal = ({
       console.error(error);
     }
   };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-5">
-      <div className="w-full max-w-xl rounded-xl bg-white shadow-xl">
-        {/* Header */}
+    <Modal isOpen={open} onClose={onClose} className="max-w-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-white px-8 py-10">
+        {/* Decorative circles */}
 
-        <div className="flex items-center justify-between border-b px-6 py-4">
-          <h2 className="text-xl font-semibold">Add Company</h2>
+        <div className="absolute -left-8 z-20 -top-8 h-28 w-28 rounded-full bg-gradient-to-br from-fuchsia-500 to-indigo-700"></div>
 
-          <button onClick={onClose}>
-            <X />
-          </button>
-        </div>
+        <div className="absolute left-10 -top-8 z-10 h-24 w-24 rounded-full bg-violet-200"></div>
 
-        {/* Form */}
+        {/* Close */}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 p-6">
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Company Name
-            </label>
+        <button
+          onClick={onClose}
+          className="absolute cursor-pointer right-6 top-6 text-gray-700 hover:text-black"
+        >
+          <X size={24} />
+        </button>
 
-            <input
-              {...register("name", {
-                required: "Company name is required",
-              })}
-              className="w-full rounded-lg border px-4 py-3"
-            />
+        {/* Heading */}
 
-            <p className="mt-1 text-sm text-red-500">{errors.name?.message}</p>
-          </div>
+        <h2 className="mb-10 text-center text-4xl font-semibold">
+          Add Company
+        </h2>
 
-          <div>
-            <label className="mb-2 block text-sm font-medium">Location</label>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <Input
+            label="Company Name"
+            placeholder="Enter..."
+            error={errors.name?.message}
+            {...register("name", {
+              required: "Company name is required",
+            })}
+          />
 
-            <input
-              {...register("location", {
-                required: "Location is required",
-              })}
-              className="w-full rounded-lg border px-4 py-3"
-            />
-
-            <p className="mt-1 text-sm text-red-500">
-              {errors.location?.message}
-            </p>
-          </div>
+          <Input
+            label="Location"
+            placeholder="Select Location"
+            error={errors.location?.message}
+            {...register("location", {
+              required: "Location is required",
+            })}
+          />
 
           <div className="grid grid-cols-2 gap-5">
-            <div>
-              <label className="mb-2 block text-sm font-medium">City</label>
+            <Input
+              label="City"
+              placeholder="Enter city"
+              error={errors.city?.message}
+              {...register("city", {
+                required: "City is required",
+              })}
+            />
 
-              <input
-                {...register("city", {
-                  required: "City is required",
-                })}
-                className="w-full rounded-lg border px-4 py-3"
-              />
-
-              <p className="mt-1 text-sm text-red-500">
-                {errors.city?.message}
-              </p>
-            </div>
-
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Founded On
-              </label>
-
-              <input
-                type="date"
-                {...register("foundedOn", {
-                  required: "Founded date is required",
-                })}
-                className="w-full rounded-lg border px-4 py-3"
-              />
-
-              <p className="mt-1 text-sm text-red-500">
-                {errors.foundedOn?.message}
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-medium">Logo URL</label>
-
-            <input
-              {...register("logo")}
-              className="w-full rounded-lg border px-4 py-3"
-              placeholder="https://..."
+            <Input
+              type="date"
+              label="Founded On"
+              error={errors.foundedOn?.message}
+              {...register("foundedOn", {
+                required: "Founded date is required",
+              })}
             />
           </div>
 
+          <Input
+            label="Logo URL"
+            placeholder="https://logo.clearbit.com/company.com"
+            error={errors.logo?.message}
+            {...register("logo")}
+          />
+
           <div>
-            <label className="mb-2 block text-sm font-medium">
+            <label className="mb-2 block text-sm font-medium text-gray-500">
               Description
             </label>
 
             <textarea
               rows={4}
+              placeholder="Write a short description..."
               {...register("description")}
-              className="w-full rounded-lg border px-4 py-3"
+              className="resize-none border-gray-300 py-3 
+                w-full border
+                border-border-subtle
+                px-3
+                rounded-lg
+                text-sm outline-none
+                font-medium
+                placeholder:font-medium
+                placeholder:text-sm
+                focus:border-gray-700 focus:border-2
+                transition-colors"
             />
+
+            <p className="mt-1 text-sm text-red-500">
+              {errors.description?.message}
+            </p>
           </div>
 
-          <div className="flex justify-end gap-3">
-            <button
-              type="button"
-              onClick={onClose}
-              className="rounded-lg border px-5 py-2.5"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="rounded-lg bg-violet-600 px-5 py-2.5 text-white hover:bg-violet-700"
-            >
-              {isSubmitting ? "Adding..." : "Add Company"}
-            </button>
+          <div className="flex justify-center pt-2">
+            <Button type="submit" loading={isSubmitting} className="min-w-40">
+              Save
+            </Button>
           </div>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 
