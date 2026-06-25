@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import errorHandler from "./middleware/error.middleware";
 
+import companyRoutes from "./routes/company.routes";
+
 const app = express();
 
 app.use(cors());
@@ -14,6 +16,8 @@ app.get("/", (_, res) => {
     message: "Server Running",
   });
 });
-
+// routes
+app.use("/api/v1/companies", companyRoutes);
+// error middleware
 app.use(errorHandler);
 export default app;
