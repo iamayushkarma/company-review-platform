@@ -35,12 +35,14 @@ const companySchema = new Schema(
       default: "",
     },
 
-    averageRating: {
+    rating: {
       type: Number,
       default: 0,
+      min: 0,
+      max: 5,
     },
 
-    totalReviews: {
+    reviewCount: {
       type: Number,
       default: 0,
     },
