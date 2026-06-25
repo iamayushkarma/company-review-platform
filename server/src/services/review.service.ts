@@ -1,6 +1,6 @@
-import { Review } from "../models/review.model";
-import { Company } from "../models/company.model";
-import ApiError from "../utils/ApiError";
+import { Review } from "../models/review.model.js";
+import { Company } from "../models/company.model.js";
+import ApiError from "../utils/ApiError.js";
 
 const createReview = async (data: any) => {
   const company = await Company.findById(data.company);

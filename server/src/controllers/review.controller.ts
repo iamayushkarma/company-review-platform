@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 
-import asyncHandler from "../utils/asyncHandler";
-import ApiResponse from "../utils/ApiResponse";
+import asyncHandler from "../utils/asyncHandler.js";
+import ApiResponse from "../utils/ApiResponse.js";
 
-import * as reviewService from "../services/review.service";
+import * as reviewService from "../services/review.service.js";
 
 const createReview = asyncHandler(async (req: Request, res: Response) => {
   const review = await reviewService.createReview(req.body);
