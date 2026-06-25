@@ -12,10 +12,10 @@ export const getCompanyById = async (id: string) => {
   return await Company.findById(id);
 };
 
-export const searchCompanies = async (search = "", sort = "name") => {
+export const searchCompanies = async (search = "", sort = "createdAt") => {
   const query: any = {};
 
-  if (search) {
+  if (search.trim()) {
     query.$or = [
       {
         name: {
@@ -32,7 +32,24 @@ export const searchCompanies = async (search = "", sort = "name") => {
     ];
   }
 
-  return Company.find(query).sort({ [sort]: 1 });
+  let sortQuery: any = {};
+
+  switch (sort) {
+    case "rating":
+      sortQuery = { rating: -1 };
+      break;
+
+    case "name":
+      sortQuery = { name: 1 };
+      break;
+
+    case "createdAt":
+    default:
+      sortQuery = { createdAt: -1 };
+      break;
+  }
+
+  return await Company.find(query).sort(sortQuery);
 };
 
 export const updateCompanyRating = async (id: string) => {};

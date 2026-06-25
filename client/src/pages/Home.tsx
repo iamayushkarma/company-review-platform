@@ -11,6 +11,7 @@ const Home = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("createdAt");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -18,12 +19,14 @@ const Home = () => {
     }, 400);
 
     return () => clearTimeout(timeout);
-  }, [search]);
+  }, [search, sort]);
   return (
     <>
       <HomeFilters
         search={search}
         setSearch={setSearch}
+        sort={sort}
+        setSort={setSort}
         onAddCompany={() => setIsOpen(true)}
       />
 

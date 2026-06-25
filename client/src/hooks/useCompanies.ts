@@ -6,12 +6,13 @@ const useCompanies = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchCompanies = async (search = "") => {
+  const fetchCompanies = async (search = "", sort = "createdAt") => {
     try {
       setLoading(true);
 
       const { data } = await getCompanies({
         search,
+        sort,
       });
 
       setCompanies(data.data);

@@ -5,10 +5,20 @@ import { Button } from "../common/Button";
 interface HomeFiltersProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+
+  sort: string;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+
   onAddCompany: () => void;
 }
 
-const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
+const HomeFilters = ({
+  search,
+  setSearch,
+  sort,
+  setSort,
+  onAddCompany,
+}: HomeFiltersProps) => {
   return (
     <section className="mt-2 space-y-10 border-b border-b-border flex flex-wrap items-start justify-between gap-6">
       <div className="flex justify-center items-end gap-4 mx-10">
@@ -53,11 +63,13 @@ const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
         </label>
 
         <div className="relative ">
-          <select className="h-10 w-40 appearance-none cursor-pointer rounded-lg border border-gray-300 bg-white px-4 pr-10 outline-none text-[.9rem] font-medium">
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="h-10 w-40 appearance-none cursor-pointer rounded-lg border border-gray-300 bg-white px-4 pr-10 text-[.9rem] font-medium outline-none"
+          >
             <option value="createdAt">Newest</option>
-
             <option value="name">Name</option>
-
             <option value="rating">Rating</option>
           </select>
 
