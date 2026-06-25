@@ -1,6 +1,5 @@
 import { ThumbsUp } from "lucide-react";
 import type { Review } from "../../types/review.types";
-import { Button } from "../common/Button";
 import { RatingStars } from "../common/RatingStars";
 import { likeReview } from "../../api/review.api";
 
