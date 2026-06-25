@@ -1,7 +1,13 @@
-import React from "react";
+import HomeFilters from "../components/company/HomeFilters";
 
-function Home() {
-  return <div></div>;
-}
+const Home = () => {
+  return (
+    <div>
+      <HomeFilters />
+
+      <hr className="my-8 border-border" />
+    </div>
+  );
+};
 
 export default Home;
