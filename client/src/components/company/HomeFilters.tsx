@@ -16,7 +16,7 @@ const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
 
         <div className="w-80">
           <label className="mb-2 block text-sm font-medium text-gray-600">
-            Select City
+            Search City
           </label>
 
           <div className="relative">
