@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import asyncHandler from "../utils/asyncHandler";
-import ApiResponse from "../utils/ApiResponse";
+import asyncHandler from "../utils/asyncHandler.js";
+import ApiResponse from "../utils/ApiResponse.js";
 
-import * as companyService from "../services/company.service";
+import * as companyService from "../services/company.service.js";
 
 const createCompany = asyncHandler(async (req, res) => {
   const company = await companyService.createCompany(req.body);
