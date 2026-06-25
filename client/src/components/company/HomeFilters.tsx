@@ -1,4 +1,6 @@
 import { ChevronDown, MapPin, Plus, Search } from "lucide-react";
+import { Input } from "../common/Input";
+import { Button } from "../common/Button";
 
 interface HomeFiltersProps {
   search: string;
@@ -8,8 +10,8 @@ interface HomeFiltersProps {
 
 const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
   return (
-    <section className="mt-10 flex flex-wrap items-end justify-between gap-6">
-      <div className="flex flex-wrap items-end gap-4">
+    <section className="mt-2 space-y-10 border-b border-b-border flex flex-wrap items-end justify-between gap-6">
+      <div className="flex flex-wrap items-end gap-4 mx-10">
         {/* City */}
 
         <div className="w-80">
@@ -18,12 +20,11 @@ const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
           </label>
 
           <div className="relative">
-            <input
+            <Input
+              isSearch={true}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              type="text"
-              placeholder="Search company..."
-              className="h-12 w-full rounded-lg border border-gray-300 px-4 pr-10 outline-none transition focus:border-violet-600"
+              className="pr-9"
             />
 
             <MapPin
@@ -34,12 +35,12 @@ const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
         </div>
 
         {/* Find */}
-
-        <button className="flex h-12 items-center gap-2 rounded-lg bg-violet-600 px-6 text-white transition hover:bg-violet-700">
+        <Button>
           <Search size={18} />
 
           <span>Find Company</span>
-        </button>
+        </Button>
+        {/* <button className="flex h-12 items-center gap-2 rounded-lg bg-violet-600 px-6 text-white transition hover:bg-violet-700"></button> */}
 
         {/* Add Company */}
 
