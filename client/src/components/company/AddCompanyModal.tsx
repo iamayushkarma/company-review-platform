@@ -130,7 +130,7 @@ const AddCompanyModal = ({
               rows={4}
               placeholder="Write a short description..."
               {...register("description")}
-              className="resize-none border-gray-300 py-3 
+              className="resize-none py-3 
                 w-full border
                 border-border-subtle
                 px-3
