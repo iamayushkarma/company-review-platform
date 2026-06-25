@@ -3,7 +3,7 @@ import cors from "cors";
 import errorHandler from "./middleware/error.middleware.js";
 
 import companyRoutes from "./routes/company.routes.js";
-import reviewRoutes from "./routes/company.routes.js";
+import reviewRoutes from "./routes/review.routes.js";
 const app = express();
 
 app.use(
