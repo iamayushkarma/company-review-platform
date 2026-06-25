@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import HomeFilters from "../components/company/HomeFilters";
 import CompanyList from "../components/company/CompanyList";
@@ -10,10 +10,18 @@ const Home = () => {
   const { companies, fetchCompanies } = useCompanies();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
+  useEffect(() => {
+    fetchCompanies(search);
+  }, [search]);
   return (
     <>
-      <HomeFilters onAddCompany={() => setIsOpen(true)} />
+      <HomeFilters
+        search={search}
+        setSearch={setSearch}
+        onAddCompany={() => setIsOpen(true)}
+      />
 
       <CompanyList companies={companies} />
 

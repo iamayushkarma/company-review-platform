@@ -6,17 +6,15 @@ const useCompanies = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchCompanies = async () => {
+  const fetchCompanies = async (search = "") => {
     try {
-      setLoading(true);
-
-      const { data } = await getCompanies();
+      const { data } = await getCompanies({
+        search,
+      });
 
       setCompanies(data.data);
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 

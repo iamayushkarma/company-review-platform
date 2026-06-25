@@ -1,10 +1,12 @@
 import { ChevronDown, MapPin, Plus, Search } from "lucide-react";
 
 interface HomeFiltersProps {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
   onAddCompany: () => void;
 }
 
-const HomeFilters = ({ onAddCompany }: HomeFiltersProps) => {
+const HomeFilters = ({ search, setSearch, onAddCompany }: HomeFiltersProps) => {
   return (
     <section className="mt-10 flex flex-wrap items-end justify-between gap-6">
       <div className="flex flex-wrap items-end gap-4">
@@ -17,8 +19,10 @@ const HomeFilters = ({ onAddCompany }: HomeFiltersProps) => {
 
           <div className="relative">
             <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               type="text"
-              placeholder="Enter city..."
+              placeholder="Search company..."
               className="h-12 w-full rounded-lg border border-gray-300 px-4 pr-10 outline-none transition focus:border-violet-600"
             />
 
