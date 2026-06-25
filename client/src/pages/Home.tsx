@@ -13,7 +13,11 @@ const Home = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetchCompanies(search);
+    const timeout = setTimeout(() => {
+      fetchCompanies(search);
+    }, 400);
+
+    return () => clearTimeout(timeout);
   }, [search]);
   return (
     <>
