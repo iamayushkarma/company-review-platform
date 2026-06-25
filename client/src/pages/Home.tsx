@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      fetchCompanies(search);
+      fetchCompanies(search, sort);
     }, 400);
 
     return () => clearTimeout(timeout);

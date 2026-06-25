@@ -15,9 +15,10 @@ export const createCompany = asyncHandler(async (req, res) => {
 export const getCompanies = asyncHandler(async (req, res) => {
   const { search, city, sort } = req.query;
 
-  const companies = await companyService.searchCompanies(
+  const companies = await companyService.getCompanies(
     search as string,
     city as string,
+    sort as string,
   );
 
   return res.json(new ApiResponse(200, companies));
