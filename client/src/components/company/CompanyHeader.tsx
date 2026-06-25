@@ -1,5 +1,7 @@
 import { MapPin } from "lucide-react";
 import type { Company } from "../../types/company.types";
+import { RatingStars } from "../common/RatingStars";
+import { Button } from "../common/Button";
 
 interface CompanyHeaderProps {
   company: Company;
@@ -7,18 +9,12 @@ interface CompanyHeaderProps {
   onAddReview: () => void;
 }
 
-const CompanyHeader = ({
-  company,
-  reviewCount,
-  onAddReview,
-}: CompanyHeaderProps) => {
-  const filledStars = Math.round(company.rating);
-
+const CompanyHeader = ({ company, onAddReview }: CompanyHeaderProps) => {
   return (
-    <section className="rounded-2xl bg-white p-6 shadow-[0_8px_35px_rgba(0,0,0,0.06)]">
+    <section className="rounded-xl bg-white px-8 py-6 transition-all duration-200 ">
       <div className="flex items-start justify-between">
-        {/* Left Side */}
-        <div className="flex gap-5">
+        {/* Left */}
+        <div className="flex items-start gap-5">
           <img
             src={company.logo}
             alt={company.name}
@@ -26,48 +22,38 @@ const CompanyHeader = ({
           />
 
           <div>
-            <h1 className="text-[2rem] font-semibold text-[#1B1B1B]">
+            <h2 className="text-[1.25rem] font-semibold leading-none text-text-primary">
               {company.name}
-            </h1>
+            </h2>
 
-            <div className="mt-2 flex items-center gap-2 text-sm text-[#7A7A7A]">
-              <MapPin size={15} />
+            <div className="mt-2 flex items-center gap-2 text-[15px] text-text-secondary">
+              <MapPin size={15} strokeWidth={2} />
               <span>{company.location}</span>
             </div>
 
-            <div className="mt-5 flex items-center gap-3">
-              <span className="text-3xl font-semibold">
+            <div className="mt-5 flex items-center gap-4">
+              <span className="text-md font-semibold text-text-primary">
                 {company.rating.toFixed(1)}
               </span>
 
-              <div className="text-2xl tracking-[3px] text-[#F4B400]">
-                {"★".repeat(filledStars)}
-                {"☆".repeat(5 - filledStars)}
-              </div>
+              <RatingStars rating={company.rating} />
 
-              <span className="text-xl font-medium text-[#222]">
-                {reviewCount} Reviews
+              <span className="text-md font-medium text-text-primary">
+                {company.reviewCount} Reviews
               </span>
             </div>
           </div>
         </div>
 
-        {/* Right Side */}
-        <div className="flex h-full flex-col items-end justify-between">
+        {/* Right */}
+        <div className="flex min-h-[96px] flex-col items-end justify-between">
           <p className="text-sm text-[#8B8B8B]">
-            Founded on {new Date(company.foundedOn).toLocaleDateString("en-GB")}
+            Founded on{" "}
+            {new Date(company.foundedOn).toLocaleDateString("en-GB")}{" "}
           </p>
-
-          <button
-            onClick={onAddReview}
-            className="mt-16 rounded-md bg-gradient-to-r from-fuchsia-500 to-indigo-700 px-7 py-3 font-medium text-white transition hover:opacity-90"
-          >
-            + Add Review
-          </button>
+          <Button onClick={onAddReview}>+ Add Review</Button>
         </div>
       </div>
-
-      <hr className="my-6 border-gray-200" />
     </section>
   );
 };
