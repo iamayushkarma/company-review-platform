@@ -3,7 +3,7 @@ import cors from "cors";
 import errorHandler from "./middleware/error.middleware";
 
 import companyRoutes from "./routes/company.routes";
-
+import reviewRoutes from "./routes/review.routes";
 const app = express();
 
 app.use(cors());
@@ -18,6 +18,8 @@ app.get("/", (_, res) => {
 });
 // routes
 app.use("/api/v1/companies", companyRoutes);
+app.use("/api/v1/reviews", reviewRoutes);
+
 // error middleware
 app.use(errorHandler);
 export default app;
