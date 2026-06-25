@@ -7,7 +7,7 @@ router.post("/", companyController.createCompany);
 
 router.get("/", companyController.getCompanies);
 
-router.get("/search", companyController.searchCompanies);
+// router.get("/search", companyController.searchCompanies);
 
 router.get("/:id", companyController.getCompanyById);
 

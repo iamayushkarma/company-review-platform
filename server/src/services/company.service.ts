@@ -12,25 +12,27 @@ export const getCompanyById = async (id: string) => {
   return await Company.findById(id);
 };
 
-export const searchCompanies = async (
-  search = "",
-  city = "",
-  sort = "name",
-) => {
+export const searchCompanies = async (search = "", sort = "name") => {
   const query: any = {};
 
   if (search) {
-    query.name = {
-      $regex: search,
-      $options: "i",
-    };
+    query.$or = [
+      {
+        name: {
+          $regex: search,
+          $options: "i",
+        },
+      },
+      {
+        city: {
+          $regex: search,
+          $options: "i",
+        },
+      },
+    ];
   }
 
-  if (city) {
-    query.city = city;
-  }
-
-  return await Company.find(query).sort({ [sort]: 1 });
+  return Company.find(query).sort({ [sort]: 1 });
 };
 
 export const updateCompanyRating = async (id: string) => {};

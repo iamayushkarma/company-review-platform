@@ -13,7 +13,12 @@ export const createCompany = asyncHandler(async (req, res) => {
 });
 
 export const getCompanies = asyncHandler(async (req, res) => {
-  const companies = await companyService.getCompanies();
+  const { search, city, sort } = req.query;
+
+  const companies = await companyService.searchCompanies(
+    search as string,
+    city as string,
+  );
 
   return res.json(new ApiResponse(200, companies));
 });
@@ -25,11 +30,10 @@ export const getCompanyById = asyncHandler(async (req, res) => {
 });
 
 export const searchCompanies = asyncHandler(async (req, res) => {
-  const { search, city, sort } = req.query;
+  const { search, sort } = req.query;
 
   const companies = await companyService.searchCompanies(
     search as string,
-    city as string,
     sort as string,
   );
 
