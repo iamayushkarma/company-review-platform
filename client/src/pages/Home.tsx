@@ -1,19 +1,27 @@
-import CompanyList from "../components/company/CompanyList";
+import { useState } from "react";
+
 import HomeFilters from "../components/company/HomeFilters";
+import CompanyList from "../components/company/CompanyList";
+import AddCompanyModal from "../components/company/AddCompanyModal";
+
 import useCompanies from "../hooks/useCompanies";
 
 const Home = () => {
-  const { companies, loading } = useCompanies();
+  const { companies, fetchCompanies } = useCompanies();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <HomeFilters />
+      <HomeFilters onAddCompany={() => setIsOpen(true)} />
 
-      {loading ? (
-        <h2 className="mt-10 text-center text-lg">Loading...</h2>
-      ) : (
-        <CompanyList companies={companies} />
-      )}
+      <CompanyList companies={companies} />
+
+      <AddCompanyModal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSuccess={fetchCompanies}
+      />
     </>
   );
 };

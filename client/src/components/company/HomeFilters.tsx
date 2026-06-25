@@ -1,59 +1,68 @@
-import { MapPin, Plus, Search, ChevronDown } from "lucide-react";
+import { ChevronDown, MapPin, Plus, Search } from "lucide-react";
 
-const HomeFilters = () => {
+interface HomeFiltersProps {
+  onAddCompany: () => void;
+}
+
+const HomeFilters = ({ onAddCompany }: HomeFiltersProps) => {
   return (
-    <section className="mt-10 flex items-end justify-between gap-8">
-      <div className="flex items-end gap-5">
+    <section className="mt-10 flex flex-wrap items-end justify-between gap-6">
+      <div className="flex flex-wrap items-end gap-4">
         {/* City */}
 
-        <div className="w-[370px]">
-          <label className="mb-2 block text-sm font-medium text-text-secondary">
+        <div className="w-80">
+          <label className="mb-2 block text-sm font-medium text-gray-600">
             Select City
           </label>
 
           <div className="relative">
             <input
               type="text"
-              placeholder="Indore, Madhya Pradesh, India"
-              className="h-12 w-full rounded-md border border-border px-4 pr-10 outline-none"
+              placeholder="Enter city..."
+              className="h-12 w-full rounded-lg border border-gray-300 px-4 pr-10 outline-none transition focus:border-violet-600"
             />
 
             <MapPin
               size={18}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-primary"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-violet-600"
             />
           </div>
         </div>
 
         {/* Find */}
 
-        <button className="flex h-12 items-center gap-2 rounded-md bg-primary px-8 font-medium text-white transition hover:bg-primary-hover">
+        <button className="flex h-12 items-center gap-2 rounded-lg bg-violet-600 px-6 text-white transition hover:bg-violet-700">
           <Search size={18} />
-          Find Company
+
+          <span>Find Company</span>
         </button>
 
-        {/* Add */}
+        {/* Add Company */}
 
-        <button className="flex h-12 items-center gap-2 rounded-md bg-primary px-8 font-medium text-white transition hover:bg-primary-hover">
+        <button
+          onClick={onAddCompany}
+          className="flex h-12 items-center gap-2 rounded-lg bg-violet-600 px-6 text-white transition hover:bg-violet-700"
+        >
           <Plus size={18} />
-          Add Company
+
+          <span>Add Company</span>
         </button>
       </div>
 
       {/* Sort */}
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-text-secondary">
+        <label className="mb-2 block text-sm font-medium text-gray-600">
           Sort
         </label>
 
         <div className="relative">
-          <select className="h-12 w-36 appearance-none rounded-md border border-border bg-white px-4 outline-none">
-            <option>Name</option>
+          <select className="h-12 w-40 appearance-none rounded-lg border border-gray-300 bg-white px-4 pr-10 outline-none">
+            <option value="createdAt">Newest</option>
 
-            <option>Rating</option>
+            <option value="name">Name</option>
 
-            <option>Date</option>
+            <option value="rating">Rating</option>
           </select>
 
           <ChevronDown
