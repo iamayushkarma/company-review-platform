@@ -5,9 +5,10 @@ import CompanyList from "../components/company/CompanyList";
 import AddCompanyModal from "../components/company/AddCompanyModal";
 
 import useCompanies from "../hooks/useCompanies";
+import CompanyListSkeleton from "../components/skeletons/CompanyListSkeleton";
 
 const Home = () => {
-  const { companies, fetchCompanies } = useCompanies();
+  const { companies, loading, fetchCompanies } = useCompanies();
 
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -20,6 +21,7 @@ const Home = () => {
 
     return () => clearTimeout(timeout);
   }, [search, sort]);
+
   return (
     <>
       <HomeFilters
@@ -30,7 +32,11 @@ const Home = () => {
         onAddCompany={() => setIsOpen(true)}
       />
 
-      <CompanyList companies={companies} />
+      {loading ? (
+        <CompanyListSkeleton />
+      ) : (
+        <CompanyList companies={companies} />
+      )}
 
       <AddCompanyModal
         open={isOpen}

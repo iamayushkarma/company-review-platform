@@ -1,37 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getCompanies } from "../api/company.api";
 import type { Company } from "../types/company.types";
 
 const useCompanies = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [fetching, setFetching] = useState(false);
 
   const fetchCompanies = async (search = "", sort = "createdAt") => {
     try {
-      setLoading(true);
+      companies.length === 0 ? setLoading(true) : setFetching(true);
 
-      const { data } = await getCompanies({
-        search,
-        sort,
-      });
-
+      const { data } = await getCompanies({ search, sort });
       setCompanies(data.data);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+      setFetching(false);
     }
   };
 
-  useEffect(() => {
-    fetchCompanies();
-  }, []);
-
-  return {
-    companies,
-    loading,
-    fetchCompanies,
-  };
+  return { companies, loading, fetching, fetchCompanies };
 };
 
 export default useCompanies;
