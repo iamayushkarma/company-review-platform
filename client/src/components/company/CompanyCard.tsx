@@ -47,7 +47,7 @@ const CompanyCard = ({ company }: CompanyCardProps) => {
         </div>
 
         {/* Right */}
-        <div className="flex min-h-[96px] flex-col items-end justify-between">
+        <div className="flex min-h-24 flex-col items-end justify-between">
           <p className="text-sm text-[#8A8A8A]">Founded on {formattedDate}</p>
 
           <Link

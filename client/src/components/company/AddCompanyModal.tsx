@@ -61,7 +61,6 @@ const AddCompanyModal = ({
         <div className="absolute left-10 -top-8 z-10 h-24 w-24 rounded-full bg-violet-200"></div>
 
         {/* Close */}
-
         <button
           onClick={onClose}
           className="absolute cursor-pointer right-6 top-6 text-gray-700 hover:text-black"
@@ -70,7 +69,6 @@ const AddCompanyModal = ({
         </button>
 
         {/* Heading */}
-
         <h2 className="mb-10 text-center text-4xl font-semibold">
           Add Company
         </h2>

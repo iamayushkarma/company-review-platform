@@ -8,24 +8,6 @@ interface Props {
   isLoading?: boolean;
 }
 
-// const ReviewList = ({ reviews, onRefresh }: Props) => {
-//   if (!reviews.length) {
-//     return (
-//       <div className="py-16 text-center text-text-secondary">
-//         No reviews yet.
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="space-y-5">
-//       {reviews.map((review) => (
-//         <ReviewCard key={review._id} review={review} onRefresh={onRefresh} />
-//       ))}
-//     </div>
-//   );
-// };
-
 const ReviewList = ({ reviews, onRefresh, isLoading = false }: Props) => {
   if (isLoading) {
     return (
@@ -55,4 +37,3 @@ const ReviewList = ({ reviews, onRefresh, isLoading = false }: Props) => {
 };
 
 export default ReviewList;
-// export default ReviewList;
